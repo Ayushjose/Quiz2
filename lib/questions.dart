@@ -10,7 +10,7 @@ class Questions extends StatefulWidget {
 class _QuestionsState extends State<Questions> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.blue,
+    return Scaffold(backgroundColor: Colors.black,
       body: Center(
           child: Column(
             children: [
