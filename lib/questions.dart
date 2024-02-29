@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/qnfile.dart';
 
 class Questions extends StatefulWidget {
   const Questions({Key? key}) : super(key: key);
@@ -8,6 +9,29 @@ class Questions extends StatefulWidget {
 }
 
 class _QuestionsState extends State<Questions> {
+  List questionsList = [
+    Quiz(qus: 'Noel have brain', ans: false),
+    Quiz(qus: 'Noel is beutiful', ans: false),
+    Quiz(qus: 'Noel is dumb', ans: true),
+  ];
+  int index = 0;
+  String result = '';
+  void nxtqs() {
+    if (index < questionsList.length) {
+      index++;
+    }
+  }
+
+  void check(bool answer) {
+    if (questionsList[index].ans == answer) {
+      result = 'Correct Answer';
+    }
+    if (questionsList[index].ans != answer) {
+      result = 'Wrong Answer';
+    }++
+    ;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +50,7 @@ class _QuestionsState extends State<Questions> {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(20.0)),
                   child: Text(
-                    'Question1',
+                    questionsList[index].qus,
                     style: TextStyle(
                         color: Colors.amber, fontWeight: FontWeight.bold),
                   )),
@@ -37,11 +61,16 @@ class _QuestionsState extends State<Questions> {
                 height: 70,
                 width: double.infinity,
                 child: TextButton(
+                    onPressed: () {
+                      setState(() {
+                        check(true);
+                        nxtqs();
+                      });
+                    },
                     style: TextButton.styleFrom(
                         backgroundColor: Colors.lightGreenAccent),
-                    onPressed: null,
                     child: Text(
-                      'Yes',
+                      'TRUE',
                       style: TextStyle(color: Colors.black),
                     )),
               ),
@@ -52,26 +81,23 @@ class _QuestionsState extends State<Questions> {
                 height: 70,
                 width: double.infinity,
                 child: TextButton(
-                    style: TextButton.styleFrom(backgroundColor: Colors.redAccent),
-                    onPressed: null,
+                    onPressed: () {
+                      setState(() {
+                        check(false);
+                        nxtqs();
+                      });
+                    },
+                    style:
+                        TextButton.styleFrom(backgroundColor: Colors.redAccent),
                     child: Text(
-                      'No',
+                      'FALSE',
                       style: TextStyle(color: Colors.black),
                     )),
               ),
-              Container(
-                height: 20,
-                width: 50,
-                decoration: BoxDecoration(color: Colors.blueGrey),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-
-                ),
-              )
+              Text(style: TextStyle(color: Colors.white54), result)
             ],
           ),
         ),
-
       ),
     );
   }

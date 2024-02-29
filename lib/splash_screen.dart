@@ -27,8 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(backgroundColor: Colors.blue,maxRadius: 200.0,
-                backgroundImage: NetworkImage('https://i0.wp.com/allmaverick.com/wp-content/uploads/2022/04/FRXvaJKXIAMo3YF.jpg?resize=770%2C468&ssl=1'))
+              Center(
+                child: Image.network
+               ('https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-quiz-logo-with-speech-bubble-symbols-png-image_6568572.png'))
                         ],
           ),
         ),
